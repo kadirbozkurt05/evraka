@@ -1,5 +1,6 @@
 package tasks;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -7,6 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.AmazonPage;
 import utils.Driver;
+
+import java.util.List;
 
 public class EvrakaTask {
 
@@ -31,6 +34,8 @@ public class EvrakaTask {
         amazonPage.firstResult.click();
         System.out.println("-------------------------------------------------------------------------------------------");
 
+
+
         for (WebElement each : amazonPage.getSizes()) {
 
             try {
@@ -43,12 +48,13 @@ public class EvrakaTask {
 
                 System.out.println("RESULTS FOR "+amazonPage.size.getText());
                 System.out.println("iPhone 13   Size:"+amazonPage.size.getText());
-                System.out.println(amazonPage.color.getText().replace("Renk","Color")+" Price:"+amazonPage.priceBig.getText()
-                        +","+ amazonPage.priceLittle.getText()+ amazonPage.priceSymbol.getText());
+                System.out.print(amazonPage.color.getText().replace("Renk","Color"));
+                System.out.println(" Price:"+amazonPage.priceBig.getText()+","+ amazonPage.priceLittle.getText()+ amazonPage.priceSymbol.getText());
                 System.out.println("Stock:"+amazonPage.stock.getText());
                 System.out.println("-------------------------------------------------------------------------------------------");
 
             }catch (NoSuchElementException e){
+                System.out.println();
                 System.out.println("NO STOCKS FOR "+amazonPage.size.getText());
                 System.out.println("-------------------------------------------------------------------------------------------");
             }
