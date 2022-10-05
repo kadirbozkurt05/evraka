@@ -1,9 +1,12 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.Driver;
+
+import java.util.List;
 
 public class AmazonPage {
     public AmazonPage(){
@@ -19,7 +22,6 @@ public class AmazonPage {
     @FindBy(css = ".a-color-state.a-text-bold")
     public WebElement searchedValue;
 
-    @FindBy(css = ".a-link-normal.s-underline-text.s-underline-link-text.s-link-style.a-text-normal")
     public WebElement firstResult;
 
     @FindBy(xpath = "(//span[@class='selection'])[1]")
@@ -50,7 +52,21 @@ public class AmazonPage {
     @FindBy(id = "color_name_1")
     public WebElement colorRed;
 
+    public WebElement getFirstResult(){
+        List<WebElement> list = Driver.getDriver().findElements(By.cssSelector(".sg-col-4-of-12.s-result-item.s-asin.sg-col-4-of-16.sg-col.s-widget-spacing-small.sg-col-4-of-20"));
 
+        for (WebElement each : list) {
+            if (!each.getAttribute("class").contains("AdHolder")){
+            firstResult = each;
+            break;
+            }
+        }
+        return firstResult;
+    }
+
+    public List<WebElement> getSizes(){
+        return Driver.getDriver().findElements(By.xpath("//li[contains(@title,'2')]"));
+    }
 
 
 
