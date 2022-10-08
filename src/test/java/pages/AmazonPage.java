@@ -22,7 +22,6 @@ public class AmazonPage {
     @FindBy(css = ".a-color-state.a-text-bold")
     public WebElement searchedValue;
 
-    public WebElement firstResult;
 
     @FindBy(xpath = "(//span[@class='selection'])[1]")
     public WebElement size;
@@ -52,20 +51,12 @@ public class AmazonPage {
     @FindBy(id = "color_name_1")
     public WebElement colorRed;
 
-    public WebElement getFirstResult(){
-        List<WebElement> list = Driver.getDriver().findElements(By.cssSelector(".sg-col-4-of-12.s-result-item.s-asin.sg-col-4-of-16.sg-col.s-widget-spacing-small.sg-col-4-of-20"));
+    @FindBy(xpath = "//div[@class='sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 sg-col s-widget-spacing-small sg-col-4-of-20']")
+    public WebElement firstResult;
 
-        for (WebElement each : list) {
-            if (!each.getAttribute("class").contains("AdHolder")){
-            firstResult = each;
-            break;
-            }
-        }
-        return firstResult;
-    }
 
     public List<WebElement> getSizes(){
-        return Driver.getDriver().findElements(By.xpath("//li[contains(@title,'2')]"));
+        return Driver.getDriver().findElements(By.xpath("//ul[@class='a-unordered-list a-nostyle a-button-list a-declarative a-button-toggle-group a-horizontal a-spacing-top-micro swatches swatchesSquare']//li"));
     }
 
 

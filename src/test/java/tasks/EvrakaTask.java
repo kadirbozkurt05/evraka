@@ -29,7 +29,7 @@ public class EvrakaTask {
         //Go to the first phone from the results
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
         //Wait untill the result is visible
-        wait.until(ExpectedConditions.visibilityOf(amazonPage.getFirstResult()));
+        wait.until(ExpectedConditions.visibilityOf(amazonPage.firstResult));
         //Click the first result
         amazonPage.firstResult.click();
         System.out.println("-------------------------------------------------------------------------------------------");
